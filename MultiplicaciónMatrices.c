@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 {
   int from, to, i, j, k, N, M, world_size, world_rank;
   /*Esto es para probar, pero acordarme de que me lo tienen que pasar como parametro*/
-  N = 2;
+  N = atoi(argv[1]);
   /*Inicializacion de las matrices de manera dinamica y de manera contigua para que no$
     con el broadcast y con el scatter. Lo he hecho como se propuso en clase*/
    /*Como el enunciado no especifica entre que numeros, yo voy a rellenar
