@@ -1,0 +1,26 @@
+void rellenar_mpi(int *P_uno, int *P_dos,int pid){
+
+        MPI_File ma;
+        MPI_Status info;
+        int *buf;
+        buf = (int *)malloc(2*sizeof(int));
+        buf[0] = 1;
+        printf("%d\n",buf[0]);
+        int tam;
+        tam = 0;
+        MPI_File_open(MPI_COMM_SELF, "matrices", MPI_MODE_RDONLY, MPI_I$
+        //Primero leer el tamano de la matrices
+        MPI_File_seek(ma, 2, MPI_SEEK_SET);
+        MPI_File_read(ma, buf, 1000, MPI_INT, &info);
+        printf("HA COJIDO EL TAMANO %d\n",buf[0]);
+        tam  =buf[0];
+        int leer = tam*tam;
+        //Todos leen la primera matriz
+        MPI_File_seek(ma, 1, MPI_SEEK_SET);
+        MPI_File_read(ma, P_uno, leer, MPI_INT, &info);
+        //Cada procesador lee la columna que interesa
+        MPI_File_seek(ma, (1+leer)+(tam*pid), MPI_SEEK_SET);
+        MPI_File_read(ma, P_dos, tam, MPI_INT, &info);
+        MPI_File_close(&ma);
+        printf("EMPIEZA A IMPRIMIR LAS MATRICES LEIDAS \n");
+}
