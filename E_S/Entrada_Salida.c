@@ -132,12 +132,9 @@ int rellenar_matriz(int *matriz_uno,int *matriz_dos,int tam){
         fgets(text_to_read,50,fp);
         if(i == 1){
           text_to_read[strcspn (text_to_read, "\n" )] = '\0';
-          printf("TEXTO ES --> %d\n",strcmp(text_to_read,"begin"));
           if(strcmp(text_to_read,"begin") == 0){
             i++;
-            printf("Lee el begin\n");
             primera = 1;
-            printf("Valor de primera --> %d\n",primera);
           }else{
             printf("Lo siento, la estructura del fichero no se corresponde con la necesaria. Revisa la estrucutra del fichero\n");
             break;
@@ -150,14 +147,11 @@ int rellenar_matriz(int *matriz_uno,int *matriz_dos,int tam){
               }else{
 
                 numero = atoi(text_to_read);
-                printf("EL NUMERO ES --> %d\n", primera);
                 if(primera == 1){
-                        printf("Numero anadido a la MATRIZ UNO --> %d\n",numero);
                         matriz_uno[tam_uno] = numero;
                         tam_uno++;
                 }
                 else{
-                     	printf("Numero anadido a la MATRIZ DOS --> %d\n",numero);
                         matriz_dos[tam_dos] = numero;
                         tam_dos++;
                 }
@@ -170,10 +164,7 @@ int rellenar_matriz(int *matriz_uno,int *matriz_dos,int tam){
       }
     }
     fclose(fp);
-    printf("Tamano P1 --> %d\n",tam_uno);
-    printf("Tamano P2 --> %d\n",tam_dos);
     if(tam_uno>0 && tam_dos> 0){
-      printf("Los tamanos son mayoes que 0\n");
       if(tam_uno == tam_dos){
         return tam_uno;
         }
