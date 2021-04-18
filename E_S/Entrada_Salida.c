@@ -16,6 +16,7 @@ void imprimir_matriz(int *ma,int na);
 int *inicializar_matrices(int ta);
 int rellenar_matriz(int *matriz_uno,int *matriz_dos,int tam);
 int getTamano();
+void escribir(int *ma_resultado,int tam);
 
 int *P_uno;
 int *P_dos;
@@ -84,6 +85,7 @@ int main(int argc, char *argv[])
     imprimir_matriz(P_uno,N);
     imprimir_matriz(P_dos,N);
     imprimir_matriz(Resultado,N);
+    escribir(Resultado,N);
   }
   free(P_uno);
   free(P_dos);
@@ -196,3 +198,16 @@ int getTamano(){
    }
    return -1;
 }
+void escribir(int *resultado,int tam){
+    int i,j;
+    FILE* fichero;
+    fichero = fopen("Resultado.txt", "wt");
+    for(i=0; i<tam; i++) {
+      for(j=0; j<tam; j++){
+        fwrite(&resultado[i*tam + j],sizeof(int),1,fichero);
+     }
+    }
+    fclose(fichero);
+}
+
+
